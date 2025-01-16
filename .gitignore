@@ -1,3 +1,2 @@
-/ScreenshotTestApp/bin/
-/ScreenshotTestApp/obj/
-/ScreenshotTestApp/obj
+﻿/ScreenshotTestApp/obj/*
+/ScreenshotTestApp/bin/*
