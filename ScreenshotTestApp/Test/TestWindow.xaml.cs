@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media;
+using ScreenshotTestApp.Tools;
 
 namespace ScreenshotTestApp.Test;
 
@@ -11,6 +12,10 @@ public partial class TestWindow : Window
     public TestWindow()
     {
         this.DataContext = new TestWindowViewModel();
+        if(ViewModelHelper<ITestWindowViewModel>.TryGetViewModel(DataContext, out var viewModel))
+        {
+            viewModel!.BackgroundColor = _defaultBackgroundColor;
+        }
         InitializeComponent();
     }
     

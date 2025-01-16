@@ -28,8 +28,13 @@ public partial class RegionSelectWindow : Window
         DisplayHelper.PositionWindowAtCursor(this);
     }
 
-    public void MaximizeWindow() =>
-        DataContext.GetViewModelInstance().CurrentWindowState = WindowState.Maximized;
+    public void MaximizeWindow()
+    {
+        if(ViewModelHelper<RegionSelectViewModel>.TryGetViewModel(DataContext, out var viewModel))
+        {
+            viewModel!.CurrentWindowState = WindowState.Maximized;
+        }
+    }
 
     private async void RegionSelectWindow_OnMouseUp(object sender, MouseButtonEventArgs e)
     {
@@ -39,7 +44,10 @@ public partial class RegionSelectWindow : Window
                 return;
             
             var mousePosition = CalculateTopLeftCorner(DisplayHelper.GetMousePositionFromWinApi());
-            DataContext.GetViewModelInstance().CurrentWindowState = WindowState.Minimized;
+            if(ViewModelHelper<IRegionSelectViewModel>.TryGetViewModel(DataContext, out var viewModel))
+            {
+                viewModel!.CurrentWindowState = WindowState.Minimized;
+            }
             _ = await ScreenShotHelper.CaptureRegionAsync(mousePosition.X, mousePosition.Y, _selectedRegion.Width, _selectedRegion.Height, _path, ImageFormat.Png);
         }
         catch (Exception exception)

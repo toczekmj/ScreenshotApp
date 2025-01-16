@@ -12,16 +12,15 @@ public static class ViewModelHelper<T> where T : class
         }
         return viewModel;
     }
-}
 
-public static class RegionSelectViewModelExtensions
-{
-    public static RegionSelectViewModel GetViewModelInstance(this object dataContext)
+    public static bool TryGetViewModel(object dataContext, out T? viewModel)
     {
-        if (dataContext is not RegionSelectViewModel viewModel)
+        if (dataContext is not T model)
         {
-            throw new ArgumentException($"DataContext must be of type {nameof(RegionSelectViewModel)}");
+            viewModel = null;
+            return false;
         }
-        return viewModel;
+        viewModel = model;
+        return true;
     }
 }

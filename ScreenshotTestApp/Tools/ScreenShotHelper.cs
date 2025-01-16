@@ -12,6 +12,7 @@ public static class ScreenShotHelper
     {
         try
         {
+            // TODO: 0,0 relative to screen with mouse 
             var pixels = CaptureRegion(0, 0, width, height, format, ct);
             if (!await SaveFileAsync(pixels, path, format, ct))
             {
@@ -108,34 +109,4 @@ public static class ScreenShotHelper
 
         return true;
     }
-
-    // private static byte[] CaptureScreen(int width, int height, ImageFormat format, CancellationToken ct = default)
-    // {
-    //     var upperLeftSource = new Point(0, 0);
-    //     var upperLeftDestination = new Point(0, 0);
-    //     using MemoryStream memoryStream = new();
-    //
-    //     try
-    //     {
-    //         using var bitmap = new Bitmap(width, height);
-    //         using var graphics = Graphics.FromImage(bitmap);
-    //
-    //         graphics.CopyFromScreen(upperLeftSource, upperLeftDestination, bitmap.Size, CopyPixelOperation.SourceCopy);
-    //         bitmap.Save(memoryStream, format);
-    //     }
-    //     catch (OperationCanceledException)
-    //     {
-    //         Debug.WriteLine($"{width}x{height} could not be captured. Operation cancelled.");
-    //         throw;
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Debug.WriteLine(e);
-    //         throw;
-    //     }
-    //
-    //     return memoryStream.ToArray();
-    // }
-
-    
 }
