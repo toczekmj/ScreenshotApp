@@ -4,50 +4,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ScreenshotTestApp.Region_Selection"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="RegionSelectWindow"
         AllowsTransparency="True"
         Topmost="True"
-        WindowState="{Binding CurrentWindowState}"
+        WindowState="{Binding CurrentWindowState }"
         WindowStyle="None"
         Width="500" Height="400"
         MouseUp="RegionSelectWindow_OnMouseUp"
         MouseDown="RegionSelectWindow_OnMouseDown"
-        MouseMove="RegionSelectWindow_OnMouseMove"
-        >
+        MouseMove="RegionSelectWindow_OnMouseMove">
     <Window.DataContext>
         <local:RegionSelectViewModel />
     </Window.DataContext>
     <Window.Background>
-        <SolidColorBrush Color="{Binding BackgroundColor}"
-                         Opacity="0.1"/>
+        <SolidColorBrush Color="{Binding BackgroundColor}" Opacity="0.1" />
     </Window.Background>
-    <Border BorderBrush="Fuchsia">
-        <Canvas Name="RegionSelectionCanvas">
-            <StackPanel>
-                <Button Content="Maximize me" Command="{Binding ChangeWindowStateCommand}">
-                    <Button.CommandParameter>
-                        <WindowState>
-                            Maximized
-                        </WindowState>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Content="Normalize me" Command="{Binding ChangeWindowStateCommand}">
-                    <Button.CommandParameter>
-                        <WindowState>
-                            Normal
-                        </WindowState>
-                    </Button.CommandParameter>
-                </Button>
-                <Button Content="Minimize me" Command="{Binding ChangeWindowStateCommand}">
-                    <Button.CommandParameter>
-                        <WindowState>
-                            Minimized
-                        </WindowState>
-                    </Button.CommandParameter>
-                </Button>
-            </StackPanel>
-        </Canvas>
-    </Border>
+    <Canvas Name="RegionSelectionCanvas" />
 </Window>
